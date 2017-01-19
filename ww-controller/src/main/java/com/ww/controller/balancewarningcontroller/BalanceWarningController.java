@@ -22,6 +22,10 @@ public class BalanceWarningController {
     @Autowired
     private BalanceWarningService balanceWarningService;
 
+    /**
+     * 测试
+     * @return String
+     */
     @RequestMapping(value = "/list.do")
     @ResponseBody
     public String getList() {

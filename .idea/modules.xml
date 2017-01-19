@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ww-controller/ww-controller.iml" filepath="$PROJECT_DIR$/ww-controller/ww-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-framework/ww-framework.iml" filepath="$PROJECT_DIR$/ww-framework/ww-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-model/ww-model.iml" filepath="$PROJECT_DIR$/ww-model/ww-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-persist/ww-persist.iml" filepath="$PROJECT_DIR$/ww-persist/ww-persist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-platform.iml" filepath="$PROJECT_DIR$/ww-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-utils/ww-utils.iml" filepath="$PROJECT_DIR$/ww-utils/ww-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-web/ww-web.iml" filepath="$PROJECT_DIR$/ww-web/ww-web.iml" />
+    </modules>
+  </component>
+</project>

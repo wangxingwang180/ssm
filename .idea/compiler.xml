@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ww-controller" />
+        <module name="ww-framework" />
+        <module name="ww-model" />
+        <module name="ww-persist" />
+        <module name="ww-utils" />
+        <module name="ww-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ww-controller" target="1.5" />
+      <module name="ww-framework" target="1.5" />
+      <module name="ww-model" target="1.5" />
+      <module name="ww-persist" target="1.5" />
+      <module name="ww-platform" target="1.5" />
+      <module name="ww-utils" target="1.5" />
+      <module name="ww-web" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

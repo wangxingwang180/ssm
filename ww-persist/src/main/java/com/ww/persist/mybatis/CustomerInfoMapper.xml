@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ww.persist.mybatis.mapper.CustomerInfoMapper">
+
+	<resultMap id="BaseResultMap" type="com.ww.model.customer.CustomerInfo">
+		<id column="sn" jdbcType="BIGINT" property="sn" />
+		<result column="cust_type" jdbcType="SMALLINT" property="custType" />
+		<result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+		<result column="customer_pwd" jdbcType="VARCHAR" property="customerPwd" />
+		<result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="audit_status" jdbcType="SMALLINT" property="auditStatus" />
+		<result column="activation" jdbcType="SMALLINT" property="activation" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="pay_type" jdbcType="INTEGER" property="payType" />
+		<result column="charge_type" jdbcType="INTEGER" property="chargeType" />
+		<result column="finance_id" jdbcType="VARCHAR" property="financeId" />
+		<result column="insert_time" jdbcType="VARCHAR" property="insertTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sn, cust_type, customer_id, customer_pwd, customer_name,
+		email, phone, mobile, audit_status, activation, status, pay_type,
+		charge_type, finance_id, insert_time, update_time
+    </sql>
+
+	<select id="selectByEmail" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from customer_info
+		where email=#{email,jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insertSelective" parameterType="com.ww.model.customer.CustomerInfo">
+		insert into customer_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="custType != null">
+				cust_type,
+      </if>
+			<if test="customerId != null">
+				customer_id,
+      </if>
+			<if test="customerPwd != null">
+				customer_pwd,
+      </if>
+			<if test="customerName != null">
+				customer_name,
+      </if>
+			<if test="email != null">
+				email,
+      </if>
+			<if test="phone != null">
+				phone,
+      </if>
+			<if test="mobile != null">
+				mobile,
+      </if>
+			<if test="auditStatus != null">
+				audit_status,
+      </if>
+			<if test="activation != null">
+				activation,
+      </if>
+			<if test="status != null">
+				status,
+      </if>
+			<if test="payType != null">
+				pay_type,
+      </if>
+			<if test="chargeType != null">
+				charge_type,
+      </if>
+			<if test="financeId != null">
+				finance_id,
+      </if>
+			<if test="insertTime != null">
+				insert_time,
+      </if>
+			<if test="updateTime != null">
+				update_time,
+      </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="custType != null">
+				#{custType,jdbcType=SMALLINT},
+      </if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=VARCHAR},
+      </if>
+			<if test="customerPwd != null">
+				#{customerPwd,jdbcType=VARCHAR},
+      </if>
+			<if test="customerName != null">
+				#{customerName,jdbcType=VARCHAR},
+      </if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+      </if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+      </if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+      </if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=SMALLINT},
+      </if>
+			<if test="activation != null">
+				#{activation,jdbcType=SMALLINT},
+      </if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+      </if>
+			<if test="payType != null">
+				#{payType,jdbcType=INTEGER},
+      </if>
+			<if test="chargeType != null">
+				#{chargeType,jdbcType=INTEGER},
+      </if>
+			<if test="financeId != null">
+				#{financeId,jdbcType=VARCHAR},
+      </if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=VARCHAR},
+      </if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+		</trim>
+	</insert>
+
+	<update id="updateByEmail" parameterType="com.ww.model.customer.CustomerInfo">
+		update customer_info
+		set
+		activation = #{activation,jdbcType=SMALLINT}
+		where email =
+		#{email,jdbcType=VARCHAR}
+   </update>
+
+	
+	<select id="getCustomerInfoById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from customer_info where customer_id=#{0}
+	</select>
+
+	<!-- 批量修改用户状态为异常 -->
+	<update id="updateStatusByIds"  parameterType="map" >
+		UPDATE customer_info SET status = #{status} , update_time= NOW() 
+		WHERE customer_id IN
+    	<foreach item="item" index="index" collection="customerIds" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+	</update>
+	<!--<update id="updateStatusByIdsWithBalanceRecharge"  parameterType="list" >
+		UPDATE customer_info SET status = 0 , update_time= NOW() 
+		WHERE status != 2 AND customer_id IN
+    	<foreach item="item" index="index" collection="customerIds" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+	</update>-->
+	
+	
+	<!--<select id="getCustomerInfoListWithUnusual" parameterType="map" resultMap="BaseResultMap" >
+		select sn, customer_id, status, update_time
+		from customer_info
+		where status = 1 
+		<if test="beginTime !=null">
+			AND update_time BETWEEN #{beginTime}
+		</if>
+		
+		<if test="endTime !=null">
+			AND #{endTime}
+		</if>
+	</select>
+	
+	<select id="getCustomerInfoByIds"  parameterType="list" resultMap="BaseResultMap">
+		SELECT customer_id,status FROM
+		customer_info 
+		WHERE customer_id IN
+    	<foreach item="item" index="index" collection="customerIds" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    	AND activation = 1
+	</select>-->
+</mapper>

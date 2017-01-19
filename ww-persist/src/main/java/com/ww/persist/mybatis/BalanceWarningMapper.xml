@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ww.persist.mybatis.mapper.BalanceWarningMapper">
+	<resultMap type="com.ww.model.balanceWarning.BalanceWarning" id="BaseResultMap">
+		<id column="sn" jdbcType="BIGINT" property="sn" />
+		<result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+		<result column="balance_warning" jdbcType="DECIMAL" property="balanceWarning"/>
+		<result column="phone" jdbcType="VARCHAR" property="phone"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="insert_time" jdbcType="VARCHAR" property="insertTime"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	</resultMap>
+	
+	<sql id="_columns">
+		sn,customer_id,balance_warning,phone,email,insert_time,update_time
+	</sql>
+	
+	<select id="selectByCustomerId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	SELECT * FROM customer_balance_warning WHERE customer_id=#{customerId}
+	</select>
+	
+	<insert id="insert" parameterType="com.ww.model.balanceWarning.BalanceWarning">
+		INSERT INTO customer_balance_warning (customer_id,balance_warning,phone,email,insert_time,update_time) VALUES (#{customerId},#{balanceWarning},#{phone},#{email},#{insertTime},#{updateTime})
+	</insert>
+	
+	<select id="selectList" resultMap="BaseResultMap">
+		select * from customer_balance_warning
+	</select>
+</mapper>
+

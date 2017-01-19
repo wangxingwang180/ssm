@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.persist.mybatis.mapper.BalanceInfoMapper">
+	<resultMap id="BaseResultMap" type="com.ww.model.balanceInfo.BalanceInfo">
+		<id column="sn" property="sn" jdbcType="BIGINT" />
+		<result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+		<result column="balance" property="balance" jdbcType="DECIMAL" />
+		<result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="_columns">
+		sn,customer_id,balance,insert_time,update_time
+	</sql>
+
+	<select id="selectByCustomerId" resultMap="BaseResultMap" parameterType="string">
+		select <include refid="_columns"/> from customer_balance_info
+		where
+		customer_id =
+		#{customerId}
+	</select>
+
+	<insert id="insert" parameterType="com.ww.model.balanceInfo.BalanceInfo">
+		INSERT INTO
+		customer_balance_info (customer_id,balance,insert_time,update_time)
+		VALUES (#{customerId},#{balance},#{insertTime},#{updateTime})
+	</insert>
+	
+</mapper>

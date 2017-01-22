@@ -82,7 +82,9 @@
     <url-pattern>*.js</url-pattern>
     <url-pattern>*.css</url-pattern>
 </filter-mapping>
-
+<welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
         <!-- 访问出错配置 -->
 
 </web-app>

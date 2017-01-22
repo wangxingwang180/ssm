@@ -9,8 +9,28 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        function cs() {
+            alert("你好");
+        }
+        $(function () {
+            $("#clickMe").click(function () {
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/warning/list.do",
+                    type:"post",
+                    scriptCharset:'utf-8',
+                    dataType:"text",
+                    success: function (date) {
+                        alert(date);
+                    }
+                });
+            })
+        });
+    </script>
 </head>
 <body>
 xiami
+<input type="button" value="点我" id="clickMe">
 </body>
 </html>

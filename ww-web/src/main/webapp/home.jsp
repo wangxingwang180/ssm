@@ -80,13 +80,13 @@
         <div class="clearfix"> </div>
     </div>
     <!--//header-->
-    <h1>IMMOVABLE</h1>
+    <h1>旺旺科技</h1>
 </div>
 <!--//banner-->
 <!--about-->
 <div class="about" id="about">
     <div class="container">
-        <h6>About Us</h6>
+        <h6>关于我们</h6>
         <div class="about-grids">
             <div class="col-md-6 about-info">
                 <img src="images/img1.jpg" alt=""/>
